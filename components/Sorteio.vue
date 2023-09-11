@@ -4,55 +4,59 @@
     <form @submit.prevent="submit" class="form">
       <div class="inputs">
         
-        <div class="input-text">
-          <label for=qt_sorteio>Quantidade de numeros para sorteio</label>
-          <input v-model="qt_sorteio" id="qt_sorteio" name="qt_sorteio" class="input">
+        <div class="flex">
+          <div class="quant-input">
+            <label for=qt_sorteio>Sortear</label>
+            <input v-model="qt_sorteio" type="number" id="qt_sorteio" name="qt_sorteio" class="input-num especial-num">
+            <p>Numeros</p>
+          </div>
         </div>
 
-        <div>
-          <div class="input-text">
-            <label for=entry_min>De</label>
-            <input v-model="entry_min" id="entry_min" name="entry_min" class="input">
+
+        <div class="range">
+          <div class=" range-input">
+            <label for=entry_min>De:</label>
+            <input v-model="entry_min" type="number" id="entry_min" name="entry_min" class="input-num">
           </div>
-          <div class="input-text">
-            <label for=entry_max>A</label>
-            <input v-model="entry_max" id="entry_max" name="entry_max" class="input">
+          <div class="range-input">
+            <label for=entry_max>Até:</label>
+            <input v-model="entry_max" type="number" id="entry_max" name="entry_max" class="input-num">
           </div>
         </div>
         
-        <div class="">
-          <div class="" @click="showMoreOptions=!showMoreOptions">
+        <div class="flex">
+          <div class="btn-show-more" @click="showMoreOptions=!showMoreOptions">
             <p>Mais Opção</p>
           </div>
         </div>
 
         <div v-if="showMoreOptions" class="">
-          <div class="input-checkbox">
+          <div class="flex">
             <label for="maiorMenor">Maior menos</label>
             <input v-model="maiorMenor" id="maiorMenor" name="maiorMenor" type="checkbox"/>
           </div>
-          <div class="input-checkbox">
+          <div class="flex">
             <label for="menorMaior">Menor maior</label>
             <input v-model="menorMaior" id="menorMaior" name="menorMaior" type="checkbox"/>
           </div>
-          <div class="input-checkbox">
+          <div class="flex">
             <label for="noRepetition">Sem repetição</label>
             <input v-model="noRepetition"  id="noRepetition" name="noRepetition" type="checkbox"/>
           </div>
 
-          <div class="input-checkbox">
+          <div class="flex">
             <label for="regressiveCount">Contagem regressiva</label>
             <input v-model="regressiveCount" id="regressiveCount" name="regressiveCount" type="checkbox"/>
           </div>
-          <div v-if="regressiveCount" class="input-text">
+          <div v-if="regressiveCount" class="">
             <label for="NRegressiveCount"> Contagem regressiva</label>
-            <input v-model="NRegressiveCount" id="NRegressiveCount" name="NRegressiveCount" class="input" >
+            <input v-model="NRegressiveCount" type="number" id="NRegressiveCount" name="NRegressiveCount" class="flex" >
           </div>
 
         </div>
-      </div>
-      <div>
-        <input type="submit" value="sortear" class="btn-sortear">
+        <div class="flex">
+          <input type="submit" value="sortear" class="btn-sortear rm-border">
+        </div>
       </div>
     </form>
 
@@ -72,7 +76,91 @@
 
   </div>
 </template>
+<style scoped>
+  
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+  input[type=number]{
+    -moz-appearance:textfield;
+    appearance: textfield;
+  }
+  input[type=number]:focus{
+    outline: none;
+  }
+  .btn-show-more:hover{
+    cursor: pointer;
+  }
+  .quant-input{
+    display: flex;
+    align-items: center;
 
+  }
+  .especial-num{
+    margin: 0 20px;
+  }
+  .range-input{
+    width: 150px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .btn-show-more{
+    background-color: rgb(10, 240, 60);
+    color:white;
+    font-weight: bold;
+    font-size: 20px;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    margin: 15px 0;
+    width: 100%;
+    max-width: 250px;
+  }
+  .rm-border{
+    border: none;
+  }
+  .btn-sortear{
+    height: 30px;
+    width: 100px;
+    background-color: rgb(8, 128, 165);
+    color:white;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .inputs{
+    width: 50%;
+    margin:0 auto;
+    background-color: rgba(27, 11, 49, 0.151);
+    border-radius: 20px;
+    padding: 20px;
+  }
+  
+  .input-num{
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    text-align: center;
+  }
+  .range{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 15px 0;
+  }
+  .form{
+    padding: 15px;
+  }
+  .flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
 <script>
 import randomNumber from '../utils/randomNumber'
 export default {
@@ -80,7 +168,7 @@ export default {
   data:()=>{
     return{
       result:[],
-      qt_sorteio:66,
+      qt_sorteio:1,
       entry_min:0,
       entry_max:100,
       showMoreOptions:false,

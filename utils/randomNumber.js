@@ -23,7 +23,8 @@ const randomNumber = ({max,min,n,menorMaior=false,maiorMenor=false,noRepetition=
         if(noRepet){
             for(let x =0;x<arr.length;x++){
                 if(num == arr[x]){
-                    return randomBeetween(min,max,noRepet)
+                    num = randomBeetween(min,max,noRepet)
+
                 }
             }
         }
@@ -45,4 +46,3 @@ const randomNumber = ({max,min,n,menorMaior=false,maiorMenor=false,noRepetition=
 
 
 export default randomNumber
-
