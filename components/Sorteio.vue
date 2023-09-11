@@ -30,25 +30,25 @@
           </div>
         </div>
 
-        <div v-if="showMoreOptions" class="">
-          <div class="flex">
+        <div v-if="showMoreOptions" class="more-options">
+          <div class="checkbox">
             <label for="maiorMenor">Maior menos</label>
             <input v-model="maiorMenor" id="maiorMenor" name="maiorMenor" type="checkbox"/>
           </div>
-          <div class="flex">
+          <div class="checkbox">
             <label for="menorMaior">Menor maior</label>
             <input v-model="menorMaior" id="menorMaior" name="menorMaior" type="checkbox"/>
           </div>
-          <div class="flex">
+          <div class="checkbox">
             <label for="noRepetition">Sem repetição</label>
             <input v-model="noRepetition"  id="noRepetition" name="noRepetition" type="checkbox"/>
           </div>
 
-          <div class="flex">
+          <div class="checkbox">
             <label for="regressiveCount">Contagem regressiva</label>
             <input v-model="regressiveCount" id="regressiveCount" name="regressiveCount" type="checkbox"/>
           </div>
-          <div v-if="regressiveCount" class="">
+          <div v-if="regressiveCount" class="checkbox">
             <label for="NRegressiveCount"> Contagem regressiva</label>
             <input v-model="NRegressiveCount" type="number" id="NRegressiveCount" name="NRegressiveCount" class="flex" >
           </div>
@@ -97,6 +97,10 @@
     align-items: center;
 
   }
+  .more-options{
+    width: 80%;
+    margin: 0 auto;
+  }
   .especial-num{
     margin: 0 20px;
   }
@@ -139,7 +143,11 @@
     border-radius: 20px;
     padding: 20px;
   }
-  
+  .checkbox{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+  }
   .input-num{
     width: 50px;
     height: 50px;
