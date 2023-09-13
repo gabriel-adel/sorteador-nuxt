@@ -43,16 +43,19 @@
             <label for="noRepetition">Sem repetição</label>
             <input v-model="noRepetition"  id="noRepetition" name="noRepetition" type="checkbox"/>
           </div>
-
+          <div class="checkbox">
+            <label for="showAll">Mostrar todos</label>
+            <input v-model="showAll" id="showAll" name="showAll" type="checkbox"/>
+          </div>
           <div class="checkbox">
             <label for="regressiveCount">Contagem regressiva</label>
             <input v-model="regressiveCount" id="regressiveCount" name="regressiveCount" type="checkbox"/>
           </div>
           <div v-if="regressiveCount" class="checkbox">
             <label for="NRegressiveCount"> Contagem regressiva</label>
-            <input v-model="NRegressiveCount" type="number" id="NRegressiveCount" name="NRegressiveCount" class="flex" >
+            <input v-model="NRegressiveCount" type="number" id="NRegressiveCount" name="NRegressiveCount" class="flex input-num" >
           </div>
-
+          
         </div>
         <div class="flex">
           <input type="submit" value="sortear" class="btn-sortear rm-border">
@@ -60,22 +63,123 @@
       </div>
     </form>
 
-    <div v-if="result.length != 0 && regressiveCount">
-      <div class="regressive-count" v-if="start">
-        <p>{{ NRegressiveCount }}</p>
-      </div>
-      <div class="result" v-if="showResult && !start">
-        <p>{{ result }}</p>
+    <div v-if="result.length != 0">
+      <div v-if="regressiveCount">
+        <div class="regressive-count" v-if="start">
+          <p>{{ NRegressiveCount }}</p>
+        </div>
+        <div class="result" v-if="showResult && !start">
+          <p>Os resultados são:</p>
+          <div v-if="showAll">
+            <p>{{ result.join(', ') }}</p>
+          </div>
+          <div v-else>
+            <div v-for="(item,index) in result" :key="index">
+              <p>{{item}}</p>
+            </div>
+            <div>Proximo</div>
+            <div>Anterior</div>
+          </div>
+        </div>
+      </div>  
+      <div v-else>
+        <div class="result" v-if="showResult">
+        <p>Os resultados são:</p>
+        
+        <div >
+          <p>{{ displayResult() }}</p>
+        </div>
+        <div v-if="!showAll">
+          <div @click="addIndex">Proximo</div>
+          <div @click="lessIndex">Anterior</div>
+        </div>
+
+      
       </div>
     </div>
-    <div v-else>
-      <div class="result" v-if="showResult">
-        <p>{{ result }}</p>
-      </div>
     </div>
+    
 
   </div>
 </template>
+
+<script>
+import randomNumber from '../utils/randomNumber'
+export default {
+  name: 'Sorteio',
+  data:()=>{
+    return{
+      result:[],
+      qt_sorteio:1,
+      entry_min:0,
+      entry_max:100,
+      showMoreOptions:false,
+      maiorMenor:false, 
+      menorMaior:false,
+      noRepetition:true,
+      regressiveCount:false,
+      NRegressiveCount:5,
+      showResult:false,
+      showMoreOptions:false,
+      start:false,
+      showAll:false,
+      index:0
+    }
+  },
+  methods:{
+    submit(){
+      this.result = []
+      let data = {
+        min:this.entry_min,
+        max:this.entry_max,
+        n:this.qt_sorteio,
+        menorMaior:this.menorMaior,
+        maiorMenor:this.maiorMenor,
+        noRepetition:this.noRepetition
+      }
+      this.result = randomNumber(data)
+      if(this.regressiveCount){
+        this.start=true
+        this.startCountdown()
+      }
+      this.showResult = true
+    },
+    startCountdown(){
+      this.countdownInterval = setInterval(()=>{
+        if(this.NRegressiveCount >= 1 ) this.NRegressiveCount--;
+        else{
+          clearInterval(this.countdownInterval)
+          this.showResult = true
+          this.start = false
+        }
+      },1000)
+    },
+    beforeDestroy() {
+      if(this.countdownInterval){
+        clearInterval(this.countdownInterval)
+      }
+    },
+    addIndex(){
+      if(this.index < this.result.length - 1){
+        this.index++
+      }
+    },
+    lessIndex(){
+      if(0 < this.index){
+        this.index--
+      }
+    },
+    displayResult(){
+      if(this.showAll){
+        return this.result.map(x=>x).join(', ')
+      }
+      return this.result.filter((item,index)=>index == this.index && item).join(', ')
+    }
+  }
+}
+</script>
+
+
 <style scoped>
   
   input[type=number]::-webkit-inner-spin-button,
@@ -169,60 +273,3 @@
     align-items: center;
   }
 </style>
-<script>
-import randomNumber from '../utils/randomNumber'
-export default {
-  name: 'Sorteio',
-  data:()=>{
-    return{
-      result:[],
-      qt_sorteio:1,
-      entry_min:0,
-      entry_max:100,
-      showMoreOptions:false,
-      maiorMenor:false, 
-      menorMaior:false,
-      noRepetition:true,
-      regressiveCount:false,
-      NRegressiveCount:5,
-      showResult:false,
-      showMoreOptions:false,
-      start:false,
-    }
-  },
-  methods:{
-    submit(){
-      this.result = []
-      let data = {
-        min:this.entry_min,
-        max:this.entry_max,
-        n:this.qt_sorteio,
-        menorMaior:this.menorMaior,
-        maiorMenor:this.maiorMenor,
-        noRepetition:this.noRepetition
-      }
-      this.result = randomNumber(data)
-      if(this.regressiveCount){
-        this.start=true
-        this.startCountdown()
-      }
-      this.showResult = true
-    },
-    startCountdown(){
-      this.countdownInterval = setInterval(()=>{
-        if(this.NRegressiveCount >= 1 ) this.NRegressiveCount--;
-        else{
-          clearInterval(this.countdownInterval)
-          this.showResult = true
-          this.start = false
-        }
-      },1000)
-    },
-    beforeDestroy() {
-      if(this.countdownInterval){
-        clearInterval(this.countdownInterval)
-      }
-    },
-  }
-}
-</script>
