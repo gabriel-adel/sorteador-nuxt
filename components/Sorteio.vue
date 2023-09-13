@@ -120,7 +120,7 @@ export default {
       regressiveCount:false,
       NRegressiveCount:5,
       showResult:false,
-      showMoreOptions:false,
+      showMoreOptions:true,
       start:false,
       showAll:false,
       index:0
@@ -173,7 +173,7 @@ export default {
       if(this.showAll){
         return this.result.map(x=>x).join(', ')
       }
-      return this.result.filter((item,index)=>index == this.index && item).join(', ')
+      return this.result.filter((item,index)=>index == this.index && item).join('')
     }
   }
 }
