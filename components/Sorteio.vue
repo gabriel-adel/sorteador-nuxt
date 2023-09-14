@@ -131,12 +131,13 @@
   .display-result{
     width: 200px;
     height: 100px;
-    background-color: white;
+    background-color: var(--color-black);
     font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+    border:solid 1px var(--color-white);
   }
   
   .result{
@@ -157,6 +158,7 @@
     align-items: center;
     font-weight: bold;
     border:var(--border-white);
+    background-color: var(--btn-default);
   }
   .btns-result{
     display: flex;
@@ -167,10 +169,10 @@
     cursor: pointer;
   }
   .next{
-    color:white;
+    color:var(--color-white);
   }
   .prevs{
-    color:white;
+    color:var(--color-white);
   }
   /* end result */
 
@@ -188,9 +190,10 @@
   .more-options{
     width: 80%;
     margin: 0 auto;
-    border:solid 1px white;
+    border:solid 1px var(--color-white);
     padding: 5px;
     border-radius: 5px;
+    background-color: var(--color-black);
   }
   .especial-num{
     margin: 0 20px;
@@ -202,8 +205,9 @@
     align-items: center;
   }
   .btn-show-more{
-    border:solid 1px white;
-    color:white;
+    background-color: var(--btn-default);
+    border:solid 1px var(--color-white);
+    color:var(--color-white);
     font-weight: bold;
     font-size: 20px;
     max-width: 300px;
@@ -221,12 +225,12 @@
   .btn-sortear{
     height: 30px;
     width: 100px;
-    /* color:white; */
+    color:white;
     font-weight: bold;
     margin-top: 20px;
     border:var(--border-white);
     border-radius: 5px;
-    /* background-color: var(--btn-default); */
+    background-color: var(--btn-default);
   }
   
   .inputs{
