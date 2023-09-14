@@ -1,0 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=Orbitron);
+body{
+    background-color: #111;
+    font-family: 'Orbitron', courier, sans-serif;
+}
+p,a, span, pre, label{
+    color:white
+}
+
+:root{
+  --btn-default:#663399;
+  --color-white:#fff;
+  --color-black:#000;
+  /*  */
+  --color-glow-1:rgba(255,255,255,.1);
+  --color-glow-3:rgba(255,255,255,.3);
+  --color-glow-4:rgba(157,208,154,.3);
+  --color-glow-text-shadow:rgba(157,208,144,.3);
+  --border-white: solid 1px var(--color-white)
+}
+
+/* creditos por esse efeito cool https://codepen.io/brav0/pen/rNXgRO */
+.glow{
+    background-color: -webkit-linear-gradiente(transparent,transparent),
+    url(https://i.imgur.com/WyMyxQ6.png) 
+    repeate;
+    color: var(--color-glow-3);
+    text-shadow: 0 0 1px var(--color-glow-text-shadow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 3s infinite alternate;
+    animation-timing-function: cubic-bezier(1,.3,.79,.81)
+  }
+  @keyframes glow {
+    0%{
+      text-shadow: 0 0 1px var(--color-glow-1),
+      0 0 3px var(--color-glow-1),
+      0 0 5px var(--color-glow-3),
+    }
+    50%{
+      text-shadow: 0 0 2px var(--color-glow-1), 
+      0 0 5px var(--color-glow-1);
+    }
+    52%{
+      text-shadow: 0 0 5px var(--color-glow-4);
+    }
+    54%{
+      text-shadow: 0 0 2px var(--color-glow-1),
+      0 0 2px var(--color-glow-1);
+    }
+    100%{
+      text-shadow: 0 0 2px var(--color-glow-1), 
+      0 0 5px var(--color-glow-1), 
+      0 0 10px var(--color-glow-4)
+    }
+  }
