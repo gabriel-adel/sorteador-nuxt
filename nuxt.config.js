@@ -46,7 +46,22 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@/utils/randomNumber',
-    ['cookie-universal-nuxt',{alias:'cookiz'}]
+    ['cookie-universal-nuxt',{alias:'cookiz'}],
+    // ['@nuxtjs/fontawesome',{
+    //   component:'teste',
+    //   suffix:true,
+    //   icons:{
+    //     solid:[
+    //       'faHome'
+    //     ]
+    //   },
+    //   imports:[
+    //     {
+    //       set:'@fortawesome/free-solid-svg-icons',
+    //       icons:['faHome']
+    //     }
+    //   ]
+    // }]
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

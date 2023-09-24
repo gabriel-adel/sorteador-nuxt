@@ -6,7 +6,7 @@
         
         <div class="flex">
           <div class="quant-input">
-            <label for=qt_sorteio class="glow">Sortear Numeros</label>
+            <label for=qt_sorteio class="">Sortear Numeros</label>
             <input v-model="qt_sorteio" type="number" autofocus id="qt_sorteio" name="qt_sorteio" class="input-num especial-num">
           </div>
         </div>
@@ -14,17 +14,18 @@
 
         <div class="range">
           <div class=" range-input">
-            <label for=entry_min class="glow">De:</label>
+            <label for=entry_min class="">De:</label>
             <input v-model="entry_min" type="number" id="entry_min" name="entry_min" class="input-num">
           </div>
           <div class="range-input">
-            <label for=entry_max class="glow">Até:</label>
+            <label for=entry_max class="">Até:</label>
             <input v-model="entry_max" type="number" id="entry_max" name="entry_max" class="input-num">
           </div>
         </div>
         
         <div class="flex">
           <div class="btn-show-more" @click="showMoreOptions=!showMoreOptions">
+            <teste-icon :icon="['faHome']" color="white"/>
             <p class="">Mais Opção</p>
           </div>
         </div>
@@ -60,8 +61,6 @@
         </div>
       </div>
     </form>
-<!-- v-if="result.length != 0" -->
-    
   </div>
 </template>
 
@@ -151,10 +150,11 @@ export default {
     margin: 0 20px;
   }
   .range-input{
-    width: 150px;
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
     align-items: center;
+    height: 100px;
   }
   .btn-show-more{
     background-color: var(--btn-default);
@@ -189,6 +189,7 @@ export default {
     padding: 20px;
     border:var(--border-white);
     background-color: #161616;
+    max-width: 500px;
   }
   .checkbox{
     width: 90%;
